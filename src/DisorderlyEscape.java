@@ -3,6 +3,8 @@ import drivers.SolutionTesterResponse;
 import impl.Solution;
 import impl.utils.DisorderlyEscapeSolutionInput;
 
+import java.util.List;
+
 public class DisorderlyEscape {
     public static final DisorderlyEscapeSolutionInput[] testingInputs = new DisorderlyEscapeSolutionInput[]{
             new DisorderlyEscapeSolutionInput(1, 1, 1),
@@ -55,7 +57,7 @@ public class DisorderlyEscape {
         SolutionTester<DisorderlyEscapeSolutionInput, String> tester = new SolutionTester<>(new Solution());
         tester.add(testingInputs, testingExpectedOutputs);
 
-        SolutionTesterResponse<DisorderlyEscapeSolutionInput, String>[] responses = tester.test();
+        List<SolutionTesterResponse<DisorderlyEscapeSolutionInput, String>> responses = tester.test();
         for(SolutionTesterResponse<DisorderlyEscapeSolutionInput, String> response : responses) {
             if(response.success) {
                 System.out.println("Success: (" + response.input.width + "x" + response.input.height + " " + response.input.states + ")");

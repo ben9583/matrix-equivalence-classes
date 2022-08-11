@@ -27,7 +27,7 @@ public class SolutionRunner<InputClass, OutputClass> {
         Collections.addAll(this.inputs, inputs);
     }
 
-    public OutputClass[] run() {
+    public List<OutputClass> run() {
         List<OutputClass> outputs = new ArrayList<>(inputs.size());
         for (InputClass inputClass : inputs) {
             outputs.add(run(inputClass));
@@ -36,6 +36,6 @@ public class SolutionRunner<InputClass, OutputClass> {
 
         inputs.clear();
 
-        return (OutputClass[]) outputs.toArray();
+        return outputs;
     }
 }

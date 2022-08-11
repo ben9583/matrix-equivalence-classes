@@ -37,7 +37,7 @@ public class SolutionTester<InputClass, OutputClass> {
         Collections.addAll(this.expectedOutputs, expectedOutputs);
     }
 
-    public SolutionTesterResponse<InputClass, OutputClass>[] test() {
+    public List<SolutionTesterResponse<InputClass, OutputClass>> test() {
         List<SolutionTesterResponse<InputClass, OutputClass>> outputs = new ArrayList<>();
         for(int i = 0; i < inputs.size(); i++) {
             InputClass input = inputs.get(i);
@@ -49,6 +49,6 @@ public class SolutionTester<InputClass, OutputClass> {
         inputs.clear();
         expectedOutputs.clear();
 
-        return (SolutionTesterResponse<InputClass, OutputClass>[]) outputs.toArray();
+        return outputs;
     }
 }
