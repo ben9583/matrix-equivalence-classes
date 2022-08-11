@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.util.HashSet;
 
 public class Solution implements ISolution<DisorderlyEscapeSolutionInput, String> {
-    public static Symbol[][] symbolCache = new Symbol[13][];
+    public static Symbol[][] symbolCache = new Symbol[100][];
 
     public static Symbol[] generateTerms(int x) {
         if(x == 0) return new Symbol[]{new Symbol(Rational.ONE, new HashSet<>())};
