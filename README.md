@@ -1,5 +1,5 @@
 # Matrix Equivalence Classes
-This is a Java program I wrote for a ![Google Foobar](https://google.com/foobar) challenge ("Disorderly Escape") that counts matrix equivalence classes under row and column swaps. If you're here to see that, you can check out the `foobar` directory. I've also since reorganized my code into a proper Java project.
+This is a Java program I wrote for a [Google Foobar](https://google.com/foobar) challenge ("Disorderly Escape") that counts matrix equivalence classes under row and column swaps. If you're here to see that, you can check out the `foobar` directory. I've also since reorganized my code into a proper Java project.
 
 ## Task
 Given an $M\times N$ matrix wherein each entry can take one of $S$ states, determine how many possible matrix "groups" can be made such that a group is represented by the set of all matrices formed by swapping the rows and/or columns of a matrix.
@@ -8,7 +8,7 @@ Given an $M\times N$ matrix wherein each entry can take one of $S$ states, deter
 ### Concepts
 The set of matrices defined by rows swaps and column swaps can be expressed using the symmetric groups $S_M$ and $S_N$ respectively. Note that the matrices themselves do not define these groups, in fact they can apply to any kind of bijective function under composition, that is a function that undoes itself in the form $f^{-1}(f(x)) = x$. In this case, that would be either row-swapping or column-swapping, since un-swapping gives you the original matrix. We therefore consider any matrix that is the product of swaps on another matrix to be part of the same group.
 
-With this in mind, how can we count the equivalence classes of an $M\times N$ matrix with $S$ possible states per entry? Let's first consider how we can count just row swaps, defined by group $S_M$. We can use ![Burnside's Lemma](https://en.wikipedia.org/wiki/Burnside%27s_lemma) to count what is known as the "orbits" of the set of possible matrices acted upon by the group $S_M$. The orbit of a matrix is defined by the set of matrices that can be transformed by a operation (in this case, row swaps) to get the matrix. The orbit, in this case, is an equivalence class, and we can therefore use the following equation:
+With this in mind, how can we count the equivalence classes of an $M\times N$ matrix with $S$ possible states per entry? Let's first consider how we can count just row swaps, defined by group $S_M$. We can use [Burnside's Lemma](https://en.wikipedia.org/wiki/Burnside%27s_lemma) to count what is known as the "orbits" of the set of possible matrices acted upon by the group $S_M$. The orbit of a matrix is defined by the set of matrices that can be transformed by a operation (in this case, row swaps) to get the matrix. The orbit, in this case, is an equivalence class, and we can therefore use the following equation:
 
 $$|X/G| = \frac{1}{|G|}\sum_{g \in G}|X^g|$$
 
@@ -81,9 +81,9 @@ I'm choosing to keep this in Java 8 to keep the algorithm itself as true to the 
 
 ## Links
 Here are some helpful links for further reading on this topic:
-- ![Burnside's Lemma](https://en.wikipedia.org/wiki/Burnside%27s_lemma)
-- ![Symmetric Groups](https://en.wikipedia.org/wiki/Symmetric_group)
-- ![StackExchange Walkthrough](https://math.stackexchange.com/questions/1941503/number-of-equivalence-classes-of-matrices-under-switching-rows-and-columns)
-- ![Higher Level Discussion of Burnside's Lemma applied to Matrix Equivalence Classes](https://math.stackexchange.com/questions/2056708/number-of-equivalence-classes-of-w-times-h-matrices-under-switching-rows-and)
-- ![Maple Code for Counting Matrix Equivalence Classes](https://oeis.org/A058001/a058001.html.txt)
-- ![Thank you to the OEIS for carrying my math knowledge](https://oeis.org)
+- [Burnside's Lemma](https://en.wikipedia.org/wiki/Burnside%27s_lemma)
+- [Symmetric Groups](https://en.wikipedia.org/wiki/Symmetric_group)
+- [StackExchange Walkthrough](https://math.stackexchange.com/questions/1941503/number-of-equivalence-classes-of-matrices-under-switching-rows-and-columns)
+- [Higher Level Discussion of Burnside's Lemma applied to Matrix Equivalence Classes](https://math.stackexchange.com/questions/2056708/number-of-equivalence-classes-of-w-times-h-matrices-under-switching-rows-and)
+- [Maple Code for Counting Matrix Equivalence Classes](https://oeis.org/A058001/a058001.html.txt)
+- [Thank you to the OEIS for carrying my math knowledge](https://oeis.org)
