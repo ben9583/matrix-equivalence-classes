@@ -33,6 +33,9 @@ public class SolutionRunner<InputClass, OutputClass> {
             outputs.add(run(inputClass));
             inputs.remove(0);
         }
+
+        inputs.clear();
+
         return (OutputClass[]) outputs.toArray();
     }
 }

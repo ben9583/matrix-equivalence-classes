@@ -46,6 +46,9 @@ public class SolutionTester<InputClass, OutputClass> {
             outputs.add(new SolutionTesterResponse<>(actualOutput.equals(expectedOutput), input, expectedOutput, actualOutput));
         }
 
+        inputs.clear();
+        expectedOutputs.clear();
+
         return (SolutionTesterResponse<InputClass, OutputClass>[]) outputs.toArray();
     }
 }
