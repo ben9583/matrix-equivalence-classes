@@ -3,6 +3,7 @@ package impl.utils;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Symbol {
@@ -31,8 +32,7 @@ public class Symbol {
         for (SymbolPair tsp : this.symbolPairs) {
             for (SymbolPair osp : other.symbolPairs) {
                 int thisOtherLcm = MathUtils.lcm(tsp.subscript, osp.subscript);
-                newSymbolPairs[count] = new SymbolPair(thisOtherLcm, tsp.exponent * osp.exponent * tsp.subscript * osp.subscript / thisOtherLcm);
-                count++;
+                newSymbolPairs[count++] = new SymbolPair(thisOtherLcm, tsp.exponent * osp.exponent * tsp.subscript * osp.subscript / thisOtherLcm);
             }
         }
 
@@ -45,15 +45,16 @@ public class Symbol {
         for(int i = 0; i < newSymbolPairs.length - 1; i++) {
             for(int j = i + 1; j < newSymbolPairs.length; j++) {
                 if(newSymbolPairs[i].subscript == newSymbolPairs[j].subscript && newSymbolPairs[i].exponent != -1) {
-                    newSymbolPairs[i].exponent += newSymbolPairs[j].exponent;
-                    newSymbolPairs[j].exponent = -1;
+                    newSymbolPairs[j].exponent += newSymbolPairs[i].exponent;
+                    newSymbolPairs[i] = null;
+                    break;
                 }
             }
         }
 
         Set<SymbolPair> out = new HashSet<>(newSymbolPairs.length);
         Arrays.stream(newSymbolPairs)
-                .filter(sp -> sp.exponent != -1)
+                .filter(Objects::nonNull)
                 .forEach(out::add);
 
         return new Symbol(this.rational.multiply(other.rational), out);
@@ -91,14 +92,15 @@ public class Symbol {
         for (int i = 0; i < result.length - 1; i++) {
             for (int j = i + 1; j < result.length; j++) {
                 if (result[i].symbolPairs.equals(result[j].symbolPairs)) {
-                    result[i].rational = result[i].rational.add(result[j].rational);
-                    result[j].rational = Rational.ZERO;
+                    result[j].rational = result[j].rational.add(result[i].rational);
+                    result[i] = null;
+                    break;
                 }
             }
         }
 
         return Arrays.stream(result)
-                .filter(s -> !s.rational.getNumerator().equals(BigInteger.ZERO))
+                .filter(Objects::nonNull)
                 .toArray(Symbol[]::new);
     }
 

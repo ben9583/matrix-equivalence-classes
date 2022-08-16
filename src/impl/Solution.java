@@ -30,12 +30,14 @@ public class Solution implements ISolution<DisorderlyEscapeSolutionInput, String
 
         Symbol[] symbols = new Symbol[symbolsA.length * symbolsB.length];
         int count = 0;
+
         for(Symbol symA : symbolsA) {
             for(Symbol symB : symbolsB) {
-                symbols[count] = symA.distribute(symB);
-                count++;
+                symbols[count++] = symA.distribute(symB);
             }
         }
+
+
 
         return symbols;
     }
@@ -52,6 +54,6 @@ public class Solution implements ISolution<DisorderlyEscapeSolutionInput, String
             total = total.add(sym.eval(s));
         }
 
-        return total.getNumerator().divide(total.getDenominator()).toString();
+        return total.getNumerator().toString();
     }
 }
