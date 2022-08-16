@@ -68,7 +68,7 @@ public class Symbol {
             totalExponent += sp.exponent;
         }
 
-        return this.rational.multiply(new Rational(bigN.pow(totalExponent), BigInteger.ONE));
+        return this.rational.multiply(new Rational(bigN.pow(totalExponent)));
     }
 
     @Override

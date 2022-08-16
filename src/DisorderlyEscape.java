@@ -57,7 +57,10 @@ public class DisorderlyEscape {
         SolutionTester<DisorderlyEscapeSolutionInput, String> tester = new SolutionTester<>(new Solution());
         tester.add(testingInputs, testingExpectedOutputs);
 
+        long startTime = System.currentTimeMillis();
         List<SolutionTesterResponse<DisorderlyEscapeSolutionInput, String>> responses = tester.test();
+        long endTime = System.currentTimeMillis();
+
         for(SolutionTesterResponse<DisorderlyEscapeSolutionInput, String> response : responses) {
             if(response.success()) {
                 System.out.println("Success: (" + response.input().width() + "x" + response.input().height() + " " + response.input().states() + ")");
@@ -65,5 +68,13 @@ public class DisorderlyEscape {
                 System.out.println("Failure: (" + response.input().width() + "x" + response.input().height() + " " + response.input().states() + "): Expected: " + response.expectedOutput() + ", Actual: " + response.actualOutput());
             }
         }
+
+        System.out.println("Time taken: " + (endTime - startTime) + "ms");
+
+        /*
+        SolutionRunner<DisorderlyEscapeSolutionInput, String> runner = new SolutionRunner<>(new Solution());
+        String out = runner.run(new DisorderlyEscapeSolutionInput(20, 20, 50)); // This took me a few seconds to run — the answer is 643 digits long.
+        System.out.println(out);
+        */
     }
 }

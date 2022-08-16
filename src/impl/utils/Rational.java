@@ -3,8 +3,8 @@ package impl.utils;
 import java.math.BigInteger;
 
 public class Rational {
-    public static final Rational ONE = new Rational(BigInteger.ONE, BigInteger.ONE);
-    public static final Rational ZERO = new Rational(BigInteger.ZERO, BigInteger.ONE);
+    public static final Rational ONE = new Rational(BigInteger.ONE);
+    public static final Rational ZERO = new Rational(BigInteger.ZERO);
 
     private final BigInteger numerator;
     private final BigInteger denominator;
@@ -25,6 +25,11 @@ public class Rational {
 
         this.numerator = numerator;
         this.denominator = denominator;
+    }
+
+    public Rational(BigInteger numerator) {
+        this.numerator = numerator;
+        this.denominator = BigInteger.ONE;
     }
 
     public Rational(Rational r) {

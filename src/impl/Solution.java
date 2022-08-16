@@ -37,8 +37,6 @@ public class Solution implements ISolution<DisorderlyEscapeSolutionInput, String
             }
         }
 
-
-
         return symbols;
     }
 
