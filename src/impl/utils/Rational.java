@@ -14,7 +14,7 @@ public class Rational {
         }
 
         // Store the number in reduced form
-        BigInteger gcd = MathUtils.euclid(numerator, denominator);
+        BigInteger gcd = numerator.gcd(denominator);
         numerator = numerator.divide(gcd);
         denominator = denominator.divide(gcd);
 
