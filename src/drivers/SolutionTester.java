@@ -20,7 +20,7 @@ public class SolutionTester<InputClass, OutputClass> {
     public SolutionTesterResponse<InputClass, OutputClass> test(InputClass input, OutputClass expectedOutput) {
         OutputClass actualOutput = this.solution.solution(input);
 
-        return new SolutionTesterResponse<InputClass, OutputClass>(expectedOutput.equals(actualOutput), input, expectedOutput, actualOutput);
+        return new SolutionTesterResponse<>(expectedOutput.equals(actualOutput), input, expectedOutput, actualOutput);
     }
 
     public void add(InputClass input, OutputClass expectedOutput) {

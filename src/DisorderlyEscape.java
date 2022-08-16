@@ -59,10 +59,10 @@ public class DisorderlyEscape {
 
         List<SolutionTesterResponse<DisorderlyEscapeSolutionInput, String>> responses = tester.test();
         for(SolutionTesterResponse<DisorderlyEscapeSolutionInput, String> response : responses) {
-            if(response.success) {
-                System.out.println("Success: (" + response.input.width + "x" + response.input.height + " " + response.input.states + ")");
+            if(response.success()) {
+                System.out.println("Success: (" + response.input().width() + "x" + response.input().height() + " " + response.input().states() + ")");
             } else {
-                System.out.println("Failure: (" + response.input.width + "x" + response.input.height + " " + response.input.states + "): Expected: " + response.expectedOutput + ", Actual: " + response.actualOutput);
+                System.out.println("Failure: (" + response.input().width() + "x" + response.input().height() + " " + response.input().states() + "): Expected: " + response.expectedOutput() + ", Actual: " + response.actualOutput());
             }
         }
     }

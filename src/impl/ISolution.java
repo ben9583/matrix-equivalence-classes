@@ -1,5 +1,5 @@
 package impl;
 
 public interface ISolution<InputClass, OutputClass> {
-    public OutputClass solution(InputClass input);
+    OutputClass solution(InputClass input);
 }

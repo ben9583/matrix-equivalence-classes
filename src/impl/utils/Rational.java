@@ -17,16 +17,19 @@ public class Rational {
         BigInteger gcd = MathUtils.euclid(numerator, denominator);
         numerator = numerator.divide(gcd);
         denominator = denominator.divide(gcd);
+
         if(denominator.compareTo(BigInteger.ZERO) < 0) {
             numerator = numerator.negate();
             denominator = denominator.negate();
         }
+
         this.numerator = numerator;
         this.denominator = denominator;
     }
 
     public Rational(Rational r) {
-        this(r.numerator, r.denominator);
+        this.numerator = r.numerator;
+        this.denominator = r.denominator;
     }
 
     public Rational add(Rational other) {

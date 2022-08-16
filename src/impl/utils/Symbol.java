@@ -2,7 +2,6 @@ package impl.utils;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +24,10 @@ public class Symbol {
 
     public Symbol distribute(Symbol other) {
         SymbolPair[] newSymbolPairs = new SymbolPair[this.symbolPairs.size() * other.symbolPairs.size()];
+        if(newSymbolPairs.length == 0) return new Symbol(this.rational.multiply(other.rational), new HashSet<>(0));
 
         int count = 0;
+
         for (SymbolPair tsp : this.symbolPairs) {
             for (SymbolPair osp : other.symbolPairs) {
                 int thisOtherLcm = MathUtils.lcm(tsp.subscript, osp.subscript);
@@ -35,9 +36,9 @@ public class Symbol {
             }
         }
 
-        if(newSymbolPairs.length <= 1) {
-            Set<SymbolPair> out = new HashSet<>(newSymbolPairs.length);
-            Collections.addAll(out, newSymbolPairs);
+        if(newSymbolPairs.length == 1) {
+            Set<SymbolPair> out = new HashSet<>(1);
+            out.add(newSymbolPairs[0]);
             return new Symbol(this.rational.multiply(other.rational), out);
         }
 
@@ -51,11 +52,9 @@ public class Symbol {
         }
 
         Set<SymbolPair> out = new HashSet<>(newSymbolPairs.length);
-        for(SymbolPair sp : newSymbolPairs) {
-            if(sp.exponent != -1) {
-                out.add(sp);
-            }
-        }
+        Arrays.stream(newSymbolPairs)
+                .filter(sp -> sp.exponent != -1)
+                .forEach(out::add);
 
         return new Symbol(this.rational.multiply(other.rational), out);
     }
@@ -82,12 +81,8 @@ public class Symbol {
 
     public static Symbol[] add(Symbol[] a, Symbol[] b) {
         Symbol[] result = new Symbol[a.length + b.length];
-        for(int i = 0; i < a.length; i++) {
-            result[i] = new Symbol(a[i]);
-        }
-        for(int i = 0; i < b.length; i++) {
-            result[i + a.length] = new Symbol(b[i]);
-        }
+        System.arraycopy(a, 0, result, 0, a.length);
+        System.arraycopy(b, 0, result, a.length, b.length);
 
         for (int i = 0; i < result.length - 1; i++) {
             for (int j = i + 1; j < result.length; j++) {
@@ -98,7 +93,9 @@ public class Symbol {
             }
         }
 
-        return Arrays.stream(result).filter(s -> !s.rational.getNumerator().equals(BigInteger.ZERO)).toArray(Symbol[]::new);
+        return Arrays.stream(result)
+                .filter(s -> !s.rational.getNumerator().equals(BigInteger.ZERO))
+                .toArray(Symbol[]::new);
     }
 
     @Override
@@ -116,38 +113,22 @@ public class Symbol {
     }
 
     public static Symbol[] multiply(int subscript, Symbol[] symbols) {
-        Symbol[] result = new Symbol[symbols.length];
-        for(int i = 0; i < result.length; i++) {
-            result[i] = new Symbol(symbols[i]);
-        }
-
-        for(Symbol s : result) {
-            boolean added = false;
-            for(SymbolPair sp : s.symbolPairs) {
-                if(sp.subscript == subscript) {
-                    added = true;
-                    sp.exponent++;
-                    break;
-                }
-            }
-
-            if(!added) {
-                s.symbolPairs.add(new SymbolPair(subscript, 1));
-            }
-        }
-
-        return result;
+        return Arrays.stream(symbols)
+                .map(Symbol::new)
+                .peek(s -> s.symbolPairs
+                        .stream()
+                        .filter(sp -> sp.subscript == subscript)
+                        .findAny()
+                        .ifPresentOrElse(
+                                sp -> sp.exponent++,
+                                () -> s.symbolPairs.add(new SymbolPair(subscript, 1))
+                        )
+                ).toArray(Symbol[]::new);
     }
 
     public static Symbol[] distributeRational(Rational r, Symbol[] symbols) {
-        Symbol[] result = new Symbol[symbols.length];
-        for(int i = 0; i < result.length; i++) {
-            result[i] = new Symbol(symbols[i]);
-        }
-
-        for (Symbol symbol : result) {
-            symbol.rational = symbol.rational.multiply(r);
-        }
-        return result;
+        return Arrays.stream(symbols)
+                .map(s -> new Symbol(s.rational.multiply(r), s.symbolPairs))
+                .toArray(Symbol[]::new);
     }
 }

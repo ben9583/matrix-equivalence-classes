@@ -41,9 +41,9 @@ public class Solution implements ISolution<DisorderlyEscapeSolutionInput, String
     }
 
     public String solution(DisorderlyEscapeSolutionInput input) {
-        int w = input.width;
-        int h = input.height;
-        int s = input.states;
+        int w = input.width();
+        int h = input.height();
+        int s = input.states();
 
         Symbol[] symbols = generateTerms(w, h);
 
