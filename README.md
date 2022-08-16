@@ -77,7 +77,7 @@ Since the numbers we're working with are ginormous, I make use of Java's `BigInt
 
 I also implemented a bunch of extraneous classes for testing/running solutions in a more general settings, so if you want to tinker with this to make it more efficient, expand functionality, or just play around, I've hopefully made that process a bit easier for you.
 
-I'm choosing to keep this in Java 8 to keep the algorithm itself as true to the one I made for Foobar, but maybe I'll have a change of heart at some point, but realistically I probably won't care anyway. I write most of my Java in Java 17 but I think the focus of this project was the math, anyway.
+I've decided to update `src` to Java 17 while keeping `foobar` Java 8; keep this in mind if you plan on working with both. You cannot use Java 8 on `src` as it makes use of later features like records.
 
 ## Links
 Here are some helpful links for further reading on this topic:
