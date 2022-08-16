@@ -81,8 +81,12 @@ public class Symbol {
 
     public static Symbol[] add(Symbol[] a, Symbol[] b) {
         Symbol[] result = new Symbol[a.length + b.length];
-        System.arraycopy(a, 0, result, 0, a.length);
-        System.arraycopy(b, 0, result, a.length, b.length);
+        for(int i = 0; i < a.length; i++) {
+            result[i] = new Symbol(a[i]);
+        }
+        for(int i = 0; i < b.length; i++) {
+            result[i + a.length] = new Symbol(b[i]);
+        }
 
         for (int i = 0; i < result.length - 1; i++) {
             for (int j = i + 1; j < result.length; j++) {
