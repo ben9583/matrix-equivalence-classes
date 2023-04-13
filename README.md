@@ -40,7 +40,7 @@ In our problem, **we consider all of these to be part of the same group.** This 
 
 $$\begin{bmatrix}0 &  0\\\\ 0 & 0\end{bmatrix}\ \begin{bmatrix}1 & 0 \\\\ 0 & 0\end{bmatrix}\ \begin{bmatrix}1 & 1 \\\\ 0 & 0\end{bmatrix}\ \begin{bmatrix}1 & 0 \\\\ 0 & 1\end{bmatrix}\ \begin{bmatrix}1 & 0 \\\\ 1 & 0\end{bmatrix}\ \begin{bmatrix}1 & 1 \\\\ 1 & 0\end{bmatrix}\ \begin{bmatrix}1 & 1 \\\\ 1 & 1\end{bmatrix}\ $$
 
-There are 7 in total. When I say "*a* list of *one* matrix", I mean we could have used any matrix from the same equivalence group to represent the group as a whole. Therefore, this list is valid, but we could have used $\begin{bmatrix}0 & 1 \\\\ 0 & 0\end{bmatrix}$ instead of $\begin{bmatrix}1 & 0 \\\\ 0 & 0\end{bmatrix}$ just as well.
+There are 7 in total. When I say "*a* list of *one* matrix", I mean we could have used any matrix from the same equivalence group to represent the group as a whole. Therefore, this list is valid, but we could have used $[0 \\ 1 \\ | \\ 0 \\ 0]$ instead of $[1 \\ 0 \\ | \\ 0 \\ 0]$ just as well.
 
 #### General
 Let's use the same $2\times 2$ matrix, this time applying Burnside's lemma to get a general solution that could be applying to more columns/rows/states.
