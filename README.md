@@ -29,6 +29,7 @@ There are some things to point out in this new equation. $\sigma$ represents som
 ### Example
 #### Simple
 Consider a $2\times 2$ matrix such that each entry can be either $0$ or $1$ $(S=2)$. Here are some such configurations:
+
 $$\begin{bmatrix}1 & 1 \\\\ 1 & 0\end{bmatrix}\ \begin{bmatrix}1 & 0 \\\\ 0 & 0\end{bmatrix}\ \begin{bmatrix}1 & 1 \\\\ 1 & 1\end{bmatrix}\ $$
 
 If we take a look at the configuration with a single $1$ in the top left corner, we see we can swap the rows and columns to form the following equivalent matrices under the group we defined earlier:
